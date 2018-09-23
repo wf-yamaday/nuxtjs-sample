@@ -1,0 +1,23 @@
+{
+  "name": "nuxtjs-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wf-yamaday/nuxtjs-sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wf-yamaday/nuxtjs-sample/issues"
+  },
+  "homepage": "https://github.com/wf-yamaday/nuxtjs-sample#readme",
+  "dependencies": {
+    "nuxt": "^2.0.0"
+  }
+}
