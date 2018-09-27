@@ -1,17 +1,17 @@
 <template>
     <section class="ui container">
         <br>
-        <h1 class="ui header">犬種リスト</h1>
+        <h1 class="ui header">アルバムリスト</h1>
         <table class="ui teal table">
             <thead>
                 <tr><th>index</th>
-                <th>犬種</th>
+                <th>アルバム名</th>
                 </tr>
             </thead>
             <tbody>
-            <tr v-for="(item,i, index) in breed_list" v-bind:key='i'>
-                    <td>{{ index+1 }}</td>
-                    <td><nuxt-link :to="{path: 'dogs/' + i }">{{ i }}</nuxt-link></td>
+            <tr v-for="(album, index) in album_list">
+                    <td>#{{index}}</td>
+                    <td><nuxt-link :to="{path: 'dogs/' + index }">{{ album.albumName }}</nuxt-link></td>
             </tr>
             </tbody>
         </table>
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-    import dogApi from '@/api/dog';
+    import albumApi from '@/api/album';
     import {mapState} from 'vuex';
 
     export default {
         async fetch({store}) {
-            let json = await dogApi.breeds();
-            store.commit('breed_list_update', json)
+            let json = await albumApi.albums();
+            store.commit('album_list_update', json)
         },
-        computed: mapState(['breed_list'])
+        computed: mapState(['album_list'])
     }
 </script>

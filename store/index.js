@@ -6,6 +6,8 @@ const appStore = () => {
             breed_list: {},
             dog_list: {},
             page_count: 1,
+            // apiで取得するアルバムリスト
+            album_list: {},
         },
         mutations: {
             breed_list_update(state, payload) {
@@ -19,6 +21,10 @@ const appStore = () => {
             page_count_update(state, payload) {
                 state.page_count = parseInt( payload );
             },
+            // アルバム
+            album_list_update(state, payload) {
+                state.album_list = {...payload}
+            }
         }
     })
 };
