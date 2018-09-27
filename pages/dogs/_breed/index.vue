@@ -9,6 +9,14 @@
                 </div>
         </div>
         </div>
+        <br>
+        <div class="ui pagination menu">
+                <nuxt-link  v-for="count in page_count" :key="count"  class="item"
+                           :class="{ 'active item' : current == count }"
+                           :to="{ path: '?page=' + count }">
+                    {{ count }}
+                </nuxt-link>
+        </div>
     </section>
 </template>
 
@@ -17,10 +25,35 @@
     import { mapState } from 'vuex';
 
     export default {
-        async fetch({store, params}){
+        watchQuery: [
+            'page'
+        ],
+        validate ({params}) {
+            return /^[a-z]+$/.test( params.breed);
+        },
+        data: function() {
+            return {
+                current: 1,
+            };
+        },
+        asyncData: function(context){
+            return {
+                current: parseInt( context.query['page']) || 1,
+            }
+        },
+        fetch: async function({store, params, query}){
+            const page = parseInt(query['page']) || 1;
+            const start = 20* (page -1);
+            const end = start + 20;
+
             const json = await dogApi.dogs(params.breed);
-            store.commit('dog_list_update',json)
+
+            store.commit('page_count_update',Math.ceil(json.length / 20));
+            store.commit( 'dog_list_update', json.slice( start,end));
     },
-    computed: mapState(['dog_list']),
+    computed: mapState([
+        'page_count',
+        'dog_list'
+    ]),
     }
 </script>
