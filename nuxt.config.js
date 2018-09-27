@@ -14,7 +14,8 @@ module.exports = {
     //     ]
     },
     modules: [
-        '@nuxtjs/bulma',
+        'semantic-ui-vue/nuxt',
+        ['semantic-ui-vue/nuxt',{css: false}]
     ],
     /*
     ** Customize the progress bar color
